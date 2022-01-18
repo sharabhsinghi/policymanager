@@ -1,0 +1,34 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Policies !</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#" (click)="navHomePage()">
+        <mat-icon aria-hidden="false" aria-label="Home">home</mat-icon> Home</a>
+      <a mat-list-item href="#" (click)="navMyPolicies()">
+        <mat-icon aria-hidden="false" aria-label="policies">receipt</mat-icon> My Policies</a>
+      <a mat-list-item href="#" (click)="navAddPolicy()">
+        <mat-icon aria-hidden="false" aria-label="policies">add</mat-icon> Add Policy</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>{{PAGE.title}}</span>
+
+    </mat-toolbar>
+    <!-- Content Here -->
+    <app-dashboard *ngIf="PAGE.component=='dashboard'"></app-dashboard>
+    <app-my-policies *ngIf="PAGE.component=='my-policies'"></app-my-policies>
+    <app-add-policy *ngIf="PAGE.component=='add-policy'"></app-add-policy>
+  </mat-sidenav-content>
+</mat-sidenav-container>

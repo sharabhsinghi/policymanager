@@ -1,0 +1,82 @@
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+  <ng-container matColumnDef="company">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by company">
+      Company
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="policy_number">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by policy_number">
+      Policy Number
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.policy_number}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="policy_holder">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by policy_holder">
+      Policy Holder
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.policy_holder}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="insured">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by insured">
+      Insured
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.insured}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="premium_amount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by premium_amount">
+      Premium Amount
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.premium_amount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="start_date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by start_date">
+      Start Date
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.start_date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="premium_end_date">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by premium_end_date">
+      Premium End Date
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.premium_end_date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date_of_maturity">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date_of_maturity">
+      Date of Maturity
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.date_of_maturity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="maturity_amount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by maturity_amount">
+      Maturity Amount
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.maturity_amount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="covered_amount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by covered_amount">
+      Covered Amount
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.covered_amount}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<!-- Copyright 2022 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->
+

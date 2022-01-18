@@ -1,0 +1,97 @@
+<div class="example-container">
+  <form [formGroup]="options">
+
+    <!-- <div>
+      <label>Float label: </label>
+      <mat-radio-group [formControl]="floatLabelControl">
+        <mat-radio-button value="auto">Auto</mat-radio-button>
+        <mat-radio-button value="always">Always</mat-radio-button>
+      </mat-radio-group>
+    </div> -->
+    <section class="form-center">
+    <mat-grid-list cols="2">
+
+      <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent" class="large-field">
+        <mat-select required [formControl]="company_control">
+          <mat-option *ngFor="let policy_brand of policyBrands" value="{{policy_brand}}">{{policy_brand}}</mat-option>
+        </mat-select>
+        <mat-label>Insurer</mat-label>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent" class="large-field">
+        <mat-label>Policy Number</mat-label>
+        <input matInput [formControl]="policy_number_control" placeholder="1234567890">
+      </mat-form-field>
+
+    </mat-grid-list>
+
+    <mat-grid-list cols="2">
+
+      <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent" class="large-field">
+        <mat-label>Policy Holder</mat-label>
+        <input matInput [formControl]="policy_holder_control" placeholder="Name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent" class="large-field">
+        <mat-label>Insured</mat-label>
+        <input matInput [formControl]="insured_control" placeholder="Name">
+      </mat-form-field>
+
+  </mat-grid-list>
+
+  <mat-grid-list cols="3">
+
+    <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent">
+      <mat-label>Premium Amount</mat-label>
+      <input matInput [formControl]="premium_amount_control" placeholder="Ruppees">
+      <span matPrefix>₹&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent">
+      <mat-label>Covered Amount</mat-label>
+      <input matInput [formControl]="covered_amount_control" placeholder="Ruppees">
+      <span matPrefix>₹&nbsp;</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent">
+      <mat-label>Maturity Amount</mat-label>
+      <input matInput [formControl]="maturity_amount_control" placeholder="Ruppees">
+      <span matPrefix>₹&nbsp;</span>
+    </mat-form-field>
+
+  </mat-grid-list>
+
+  <mat-grid-list cols="3">
+
+    <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent">
+      <mat-label>Start Date</mat-label>
+      <input matInput [formControl]="start_date_control" [matDatepicker]="start_date_picker" placeholder="dd/mm/yyyy">
+      <mat-datepicker-toggle matSuffix [for]="start_date_picker"></mat-datepicker-toggle>
+      <mat-datepicker #start_date_picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent">
+      <mat-label>Premium End Date</mat-label>
+      <input matInput [formControl]="premium_end_date_control" [matDatepicker]="end_date_picker" placeholder="dd/mm/yyyy">
+      <mat-datepicker-toggle matSuffix [for]="end_date_picker"></mat-datepicker-toggle>
+      <mat-datepicker #end_date_picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent">
+      <mat-label>Maturity Date</mat-label>
+      <input matInput [formControl]="date_of_maturity_control" [matDatepicker]="maturity_date_picker" placeholder="dd/mm/yyyy">
+      <mat-datepicker-toggle matSuffix [for]="maturity_date_picker"></mat-datepicker-toggle>
+      <mat-datepicker #maturity_date_picker></mat-datepicker>
+    </mat-form-field>
+
+  </mat-grid-list>
+  </section>
+
+  <section class="form-center">
+    <div class="form-action-row">
+      <button mat-stroked-button color="accent" (click)="resetForm()">Clear</button>
+      <button mat-raised-button color="accent" (click)="submitForm()">Submit</button>
+    </div>
+  </section>
+  </form>
+</div>
