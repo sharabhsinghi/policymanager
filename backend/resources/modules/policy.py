@@ -1,12 +1,15 @@
 from flask import Blueprint, request
-from resources.utils import connection, authorizer, utilities
+from resources.utils import connection, utilities
+from resources.utils.authorizer import authorize
 import json
 
 
 POLICY = Blueprint("policy", __name__)
 
 @POLICY.route('/policy', methods=['GET'])
-def get_all_policies():
+@authorize
+def get_all_policies(*args, **kwargs):
+    user_id = kwargs['user_id']
     result = connection.execute_select_command("select * from policy")
     print(result)
     response = []

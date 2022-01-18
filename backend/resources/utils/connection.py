@@ -37,11 +37,12 @@ def execute_insert_command(command, params=None):
             conn.rollback()
             cursor.close()
 
-def execute_select_command(command):
+def execute_select_command(command, params=None):
     with get_connection() as conn:
         try:
             cursor = conn.cursor(cursor_factory = RealDictCursor)
-            cursor.execute(command)
+            print(cursor.mogrify(command, params))  
+            cursor.execute(command, params)
             result = cursor.fetchall()
             cursor.close()
             conn.commit()

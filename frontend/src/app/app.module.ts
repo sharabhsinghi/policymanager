@@ -33,6 +33,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { InterceptorService } from './services/interceptor.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +52,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     FormsModule, ReactiveFormsModule, MatInputModule, MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
