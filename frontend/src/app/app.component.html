@@ -1,7 +1,6 @@
 
 <!-- Navbar -->
-<app-launchbar></app-launchbar>
-
-
+<app-launchbar *ngIf="loggedIn"></app-launchbar>
+<app-login *ngIf="!loggedIn" (submitEM)="login($event)" (error)="loginError"></app-login>
 <router-outlet></router-outlet>
 

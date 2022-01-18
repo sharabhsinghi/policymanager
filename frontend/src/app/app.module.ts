@@ -25,7 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MyPoliciesComponent } from './components/my-policies/my-policies.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddPolicyComponent } from './components/add-policy/add-policy.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -33,7 +33,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatNativeDateModule } from '@angular/material/core';
 
-import { InterceptorService } from './services/interceptor.service'
+import { InterceptorService } from './services/interceptor.service';
+import { LoginComponent } from './components/login/login.component'
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { InterceptorService } from './services/interceptor.service'
     MyPoliciesComponent,
     AddPolicyComponent,
     DashboardComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatSliderModule,

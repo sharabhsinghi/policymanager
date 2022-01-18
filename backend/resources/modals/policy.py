@@ -1,7 +1,7 @@
 
 
 class Policy:
-    def __init__(company=None, policy_number=None, policy_holder=None, insured=None, 
+    def __init__(self, company=None, policy_number=None, policy_holder=None, insured=None, 
                  premium_amount=None, start_date=None, premium_end_date=None, 
                  date_of_maturity=None, covered_amount=None, is_deleted=None, created_by=None):
         self.company = company
@@ -18,7 +18,7 @@ class Policy:
 
         self.table_name = "policy"
 
-    def to_json():
+    def to_json(self):
         return self.__dict__
 
     # def get_columns_for_insert(self):
@@ -26,8 +26,7 @@ class Policy:
     #     del dict[DbBookmark.Columns.Id]
     #     return dict
 
-    @staticmethod
-    def to_object(json_data, with_table=False):
+    def to_object(self, json_data, with_table=False):
         prefix = ""
         if with_table:
             prefix = self.table_name + "."

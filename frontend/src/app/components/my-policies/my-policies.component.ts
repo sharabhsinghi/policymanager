@@ -35,8 +35,8 @@ export class MyPoliciesComponent implements AfterViewInit {
   policyDataErrorMessage = "Could not load Policies Data !"
 
   ngAfterViewInit(): void {
-    this.loadDummyData();
-    // this.loadMyPoliciesData();
+    // this.loadDummyData();
+    this.loadMyPoliciesData();
     this.dataSource.sort = this.sort;
   }
 

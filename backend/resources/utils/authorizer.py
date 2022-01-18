@@ -18,9 +18,10 @@ def authorize(f):
   
         try:
             # decoding the payload to fetch the stored details
-            data = jwt.decode(token, config.SECRET_KEY)
+            data = jwt.decode(token, config.SECRET_KEY, algorithms=['HS256'])
             current_user = data["user_id"]
-        except Exception:
+        except Exception as ex:
+            print(ex)
             return jsonify({
                 'message': 'Token is invalid !!'
             }), 401

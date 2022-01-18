@@ -8,14 +8,14 @@ import { Observable } from 'rxjs';
 export class InterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.token; 
+    const token = localStorage.token;
 
     if (!token) {
       return next.handle(req);
     }
 
     const req1 = req.clone({
-      headers: req.headers.set('x-access-token', `Bearer ${token}`),
+      headers: req.headers.set('x-access-token', `${token}`),
     });
 
     return next.handle(req1);
