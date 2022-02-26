@@ -1,14 +1,4 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>
-      Policies
-      <button mat-icon-button class="more-button" aria-label="Toggle menu" (click)="addPolicyPopup()">
-        <mat-icon>note_add</mat-icon> Add policy
-      </button>
-    </mat-card-title>
-  </mat-card-header>
 
-  <mat-card-content>
 
     <table *ngIf="!policyDataError" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
 
@@ -99,8 +89,7 @@
 
     <span *ngIf="policyDataError">{{policyDataErrorMessage}} <a (click)="addPolicyPopup()"> Click Here </a> to add a Policy.</span>
 
-  </mat-card-content>
-</mat-card>
+
 
 
 <!-- Copyright 2022 Google LLC. All Rights Reserved.

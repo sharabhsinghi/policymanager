@@ -31,20 +31,14 @@ export class LaunchbarComponent {
     this.username = localStorage.username;
   }
 
-  navHomePage(){
+  navHomePage() {
     this.PAGE = this.homePage;
   }
 
-  navMyPolicies(){
-    this.PAGE = this.myPoliciesPage;
-  }
-
-  navAddPolicy(){
-    this.PAGE = this.addPolicyPage;
-  }
-
-  navRecordPayment(){
-    this.PAGE = this.recordPaymentPage;
+  logout() {
+    localStorage.token = null;
+    localStorage.username = null;
+    window.location.reload();
   }
 
 }

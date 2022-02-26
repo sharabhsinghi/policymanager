@@ -24,9 +24,10 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button> -->
       <span>{{PAGE.title}}</span>
-      <span class="flexExpand"></span>
-      <a href="#" (click)="navHomePage()" class="user-account-icon">{{username}}
-        <mat-icon aria-hidden="false" aria-label="Home">account_circle</mat-icon></a>
+
+        <button mat-icon-button class="user-account-icon" aria-label="Toggle menu" (click)="logout()">
+          {{username}} <mat-icon>account_circle</mat-icon>
+        </button>
 
     </mat-toolbar>
     <!-- Content Here -->

@@ -1,8 +1,7 @@
 
 <div class="grid-container">
-  <app-my-policies></app-my-policies>
-  <!-- <mat-grid-list cols="2" >
-    <mat-grid-tile [colspan]="1" class="card-chart">
+  <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile  >
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
@@ -15,7 +14,7 @@
       </mat-card>
     </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="1" class="card-chart">
+    <mat-grid-tile  >
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
@@ -35,7 +34,7 @@
       </mat-card>
     </mat-grid-tile>
 
-    <mat-grid-tile [colspan]="2" class="card-my-policies">
+    <!-- <mat-grid-tile [colspan]="2" class="card-my-policies">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
@@ -46,6 +45,22 @@
           <app-my-policies></app-my-policies>
         </mat-card-content>
       </mat-card>
+    </mat-grid-tile> -->
+    <mat-grid-tile [colspan]="2" >
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            My Policies
+            <button mat-icon-button class="more-button" aria-label="Toggle menu" (click)="addPolicyPopup()">
+              <mat-icon>note_add</mat-icon> Add policy
+            </button>
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="dashboard-card-content">
+          <app-my-policies></app-my-policies>
+        </mat-card-content>
+      </mat-card>
     </mat-grid-tile>
-  </mat-grid-list> -->
+  </mat-grid-list>
 </div>

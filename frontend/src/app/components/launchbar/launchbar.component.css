@@ -20,6 +20,11 @@
   color: #fff;
   text-decoration: none;
   text-transform: capitalize;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  width: auto;
+  margin-right: 1em;
 }
 
 .flexExpand {
