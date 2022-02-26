@@ -26,3 +26,19 @@ mat-card-content {
   display: flex;
   justify-content: flex-end;
 }
+
+.flip-card {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
