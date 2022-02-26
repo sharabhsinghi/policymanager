@@ -11,14 +11,17 @@ export class AppComponent {
   showNavbar: boolean = true;
   loggedIn: boolean = false;
   loginError = null;
+  username = null;
 
   constructor(private appdataservice: AppdataService) { }
 
   login(event){
     this.loginError = null;
+    this.username = event['username']
     this.appdataservice.login(event).subscribe(
       (response) => {
         localStorage.token = response["token"]
+        localStorage.username = this.username;
         this.loggedIn = true;
       },
       (exception) => {

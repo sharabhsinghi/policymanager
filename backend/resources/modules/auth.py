@@ -30,3 +30,6 @@ def login_user():
     return jsonify({'message' : 'Unauthorized !!'}), 401
     
 
+def signup_user():
+    # generate_password_hash
+    pass

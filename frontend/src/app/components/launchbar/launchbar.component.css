@@ -15,3 +15,17 @@
   top: 0;
   z-index: 1;
 }
+
+.user-account-icon {
+  color: #fff;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+.flexExpand {
+  flex: 1 1 auto;
+}
+
+.top-toolbar {
+  padding: 0 1em;
+}

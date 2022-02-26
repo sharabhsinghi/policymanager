@@ -45,7 +45,6 @@ def execute_select_command(command, params=None):
             cursor.execute(command, params)
             result = cursor.fetchall()
             cursor.close()
-            conn.commit()
             return result
         except Exception as ex:
             print(ex)

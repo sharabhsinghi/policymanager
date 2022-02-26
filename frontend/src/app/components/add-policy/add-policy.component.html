@@ -1,6 +1,6 @@
-<div class="example-container">
+<h1 mat-dialog-title>Add Policy</h1>
+<div mat-dialog-content class="add-policy-container">
   <form [formGroup]="options">
-
     <!-- <div>
       <label>Float label: </label>
       <mat-radio-group [formControl]="floatLabelControl">
@@ -87,11 +87,17 @@
   </mat-grid-list>
   </section>
 
-  <section class="form-center">
+  <!-- <section class="form-center">
     <div class="form-action-row">
       <button mat-stroked-button color="accent" (click)="resetForm()">Clear</button>
       <button mat-raised-button color="accent" (click)="submitForm()">Submit</button>
     </div>
-  </section>
+  </section> -->
+
   </form>
+</div>
+<div mat-dialog-actions style="flex-direction: row-reverse;">
+  <button mat-stroked-button (click)="submitForm()" color="accent" >Submit</button>
+  <!-- <button mat-stroked-button color="accent" (click)="resetForm()">Clear</button> -->
+  <button mat-button (click)="onNoClick()">Cancel</button>
 </div>

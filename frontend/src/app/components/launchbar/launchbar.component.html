@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+  <!-- <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
@@ -10,20 +10,23 @@
       <a mat-list-item href="#" (click)="navMyPolicies()">
         <mat-icon aria-hidden="false" aria-label="policies">receipt</mat-icon> My Policies</a>
       <a mat-list-item href="#" (click)="navAddPolicy()">
-        <mat-icon aria-hidden="false" aria-label="policies">add</mat-icon> Add Policy</a>
+        <mat-icon aria-hidden="false" aria-label="policies">note_add</mat-icon> Add Policy</a>
     </mat-nav-list>
-  </mat-sidenav>
+  </mat-sidenav> -->
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
+    <mat-toolbar color="primary" class="top-toolbar">
+      <!-- <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
+      </button> -->
       <span>{{PAGE.title}}</span>
+      <span class="flexExpand"></span>
+      <a href="#" (click)="navHomePage()" class="user-account-icon">{{username}}
+        <mat-icon aria-hidden="false" aria-label="Home">account_circle</mat-icon></a>
 
     </mat-toolbar>
     <!-- Content Here -->

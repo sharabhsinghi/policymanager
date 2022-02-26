@@ -18,6 +18,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -34,7 +35,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { InterceptorService } from './services/interceptor.service';
-import { LoginComponent } from './components/login/login.component'
+import { LoginComponent } from './components/login/login.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { PaymentDetailsComponent } from './components/payment-details/payment-details.component';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +48,8 @@ import { LoginComponent } from './components/login/login.component'
     AddPolicyComponent,
     DashboardComponent,
     LoginComponent,
+    PaymentComponent,
+    PaymentDetailsComponent,
   ],
   imports: [
     BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatSliderModule,
@@ -52,10 +58,11 @@ import { LoginComponent } from './components/login/login.component'
     MatSortModule, MatGridListModule, MatCardModule, MatMenuModule,
     MatFormFieldModule, MatCheckboxModule, MatSelectModule, MatRadioModule,
     FormsModule, ReactiveFormsModule, MatInputModule, MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule, MatDialogModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add Payment for {{data.company}} Policy {{data.policy_number}}</h1>
+<div mat-dialog-content class="payment-dialog-container">
+  <mat-grid-list cols="2">
+    <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent">
+      <mat-label>Payment Date</mat-label>
+      <input matInput [matDatepicker]="payment_date_picker" placeholder="dd/mm/yyyy" [(ngModel)]="paymentDate">
+      <mat-datepicker-toggle matSuffix [for]="payment_date_picker"></mat-datepicker-toggle>
+      <mat-datepicker #payment_date_picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill" [floatLabel]="'auto'" color="accent">
+      <mat-label>Premium Amount</mat-label>
+      <input matInput placeholder="Ruppees" [(ngModel)]="paymentAmount">
+      <span matPrefix>₹&nbsp;</span>
+    </mat-form-field>
+  </mat-grid-list>
+
+  <mat-grid-list cols="1" class="payment-notes-textarea">
+    <mat-form-field appearance="fill" >
+      <mat-label>Notes</mat-label>
+      <textarea matInput [(ngModel)]="paymentNotes"></textarea>
+    </mat-form-field>
+  </mat-grid-list>
+
+</div>
+<div mat-dialog-actions style="flex-direction: row-reverse;">
+  <button mat-button [mat-dialog-close]="modalReturn" cdkFocusInitial (click)="savePayment()">Ok</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>

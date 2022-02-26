@@ -17,15 +17,18 @@ export class LaunchbarComponent {
     );
 
   PAGE: any = {};
+  username = '';
 
   homePage = {title: "Dashboard", component: "dashboard"}
   myPoliciesPage = {title: "My Policies", component: "my-policies"}
   addPolicyPage = {title: "Add Policy", component: "add-policy"}
+  recordPaymentPage = {title: "Record Payment", component: "payment"}
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit() {
     this.navHomePage();
+    this.username = localStorage.username;
   }
 
   navHomePage(){
@@ -38,6 +41,10 @@ export class LaunchbarComponent {
 
   navAddPolicy(){
     this.PAGE = this.addPolicyPage;
+  }
+
+  navRecordPayment(){
+    this.PAGE = this.recordPaymentPage;
   }
 
 }

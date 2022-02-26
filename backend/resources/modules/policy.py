@@ -10,8 +10,10 @@ POLICY = Blueprint("policy", __name__)
 @authorize
 def get_all_policies(*args, **kwargs):
     user_id = kwargs['user_id']
-    result = connection.execute_select_command("select * from policy")
-    print(result)
+    query = """ select * from policy natural join user_policy
+     where user_policy.user_id=%(user_id)s
+    """
+    result = connection.execute_select_command(query, {"user_id": user_id})
     response = []
     for row in result:
         response.append({
@@ -25,11 +27,13 @@ def get_all_policies(*args, **kwargs):
             "date_of_maturity": row.get('date_of_maturity', ''), 
             "covered_amount": row.get('covered_amount', '')
         })
-    return json.dumps(result, default=utilities.datetime_handler)
+    return json.dumps(response, default=utilities.datetime_handler)
 
 
 @POLICY.route('/policy', methods=['POST'])
-def add_policy():
+@authorize
+def add_policy(*args, **kwargs):
+    user_id = kwargs['user_id']
     data = json.loads(request.data)
     
     company = data.get('company', '') 
@@ -49,6 +53,11 @@ def add_policy():
     values = (company, policy_number, policy_holder, insured, premium_amount, 
         start_date, premium_end_date, date_of_maturity, covered_amount,)
     result = connection.execute_insert_command(insert_statement, {"values": values})
+
+    insert_mapping_statement = """INSERT into user_policy values %(values)s"""
+    mapping_values = (user_id, result[0])
+    result = connection.execute_insert_command(insert_mapping_statement, {"values": mapping_values})
+
     return json.dumps(result)
 
 

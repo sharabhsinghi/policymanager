@@ -1,13 +1,13 @@
 {\rtf1\ansi\ansicpg1252\cocoartf2636
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red55\green55\blue55;
-}
-{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000\c0;\cssrgb\c27874\c27874\c27839;
-}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red249\green180\blue119;
+\red255\green255\blue255;\red249\green180\blue119;\red255\green255\blue255;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000\c0;\cssrgb\c98630\c75744\c54073;
+\cssrgb\c100000\c100000\c99941;\cssrgb\c98630\c75744\c54073;\cssrgb\c100000\c100000\c99941;\cssrgb\c100000\c100000\c99971;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww15580\viewh11500\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 Create table if not exists policy (\
+\f0\fs22 \cf2 \cb3 Create table if not exists policy (\
 company varchar(256),\
 policy_number text PRIMARY KEY,\
 policy_holder varchar(512),\
@@ -25,14 +25,25 @@ is_deleted boolean\
 Create table if not exists policy_payment (\
 sno serial primary key,\
 policy_number text REFERENCES policy (policy_number),\
-payment_date timestamp without time zone\
-);\cf2 \cb3 \expnd0\expndtw0\kerning0
+payment_date timestamp without time zone,\
+notes text,\
+payment_amount float\
+);\expnd0\expndtw0\kerning0
 \
-\cf4 \
+\
 create table if not exists users (\
-    user_id serial,\
+    user_id serial primary_key,\
 	user_name varchar(512),\
 	user_password text,\
 	user_email text\
 )\
-}
+\
+create table if not exists user_policy (\
+user_id serial,\
+policy_number text,\
+\pard\pardeftab720\partightenfactor0
+\cf2 \outl0\strokewidth0 \strokec4 CONSTRAINT\strokec5  fk_user_policy_user_id \strokec4 FOREIGN\strokec5  \strokec4 KEY\strokec5 (user_id)   \strokec4 REFERENCES\strokec5  users(user_id),\
+\pard\pardeftab720\partightenfactor0
+\cf2 \outl0\strokewidth0 CONSTRAINT fk_user_policy_policy_number FOREIGN KEY(policy_number)   REFERENCES policy(policy_number)\outl0\strokewidth0 \strokec8 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \outl0\strokewidth0 )}

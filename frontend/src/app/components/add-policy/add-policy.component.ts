@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { AppdataService } from 'src/app/services/appdata.service';
 
 
@@ -29,7 +30,9 @@ export class AddPolicyComponent implements OnInit {
 
   policyAddError: boolean = false;
 
-  constructor(fb: FormBuilder, private appdataservice: AppdataService) {
+  constructor(fb: FormBuilder, private appdataservice: AppdataService,
+              public dialogRef: MatDialogRef<AddPolicyComponent>) {
+
     this.options = fb.group({
       floatLabel: this.floatLabelControl,
       company: this.company_control,
@@ -48,6 +51,10 @@ export class AddPolicyComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetForm()
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
   getPolicyObject(){
@@ -85,10 +92,12 @@ export class AddPolicyComponent implements OnInit {
     this.appdataservice.addPolicy(policy_params).subscribe(
       (response: string) => {
         console.log(response)
+        this.onNoClick();
       },
       (exception) => {
         this.policyAddError = true;
         console.log(exception)
+        this.onNoClick();
       }
     );
   }

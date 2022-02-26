@@ -1,10 +1,25 @@
+
 <div class="grid-container">
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+  <app-my-policies></app-my-policies>
+  <!-- <mat-grid-list cols="2" >
+    <mat-grid-tile [colspan]="1" class="card-chart">
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            {{card.title}}
+            Card 1
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          Card Content
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" class="card-chart">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Card 2
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
@@ -15,9 +30,22 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
+          Card Content
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
-  </mat-grid-list>
+
+    <mat-grid-tile [colspan]="2" class="card-my-policies">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            My Policies
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-my-policies></app-my-policies>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list> -->
 </div>

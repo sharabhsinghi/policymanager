@@ -2,6 +2,10 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { AppdataService } from 'src/app/services/appdata.service';
 import {MatSort} from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { PaymentComponent } from '../payment/payment.component';
+import { AddPolicyComponent } from '../add-policy/add-policy.component';
+import { PaymentDetailsComponent } from '../payment-details/payment-details.component';
 
 
 export interface PolicyElement {
@@ -24,63 +28,20 @@ export interface PolicyElement {
 })
 export class MyPoliciesComponent implements AfterViewInit {
 
-  constructor(private appdataservice: AppdataService) { }
+  constructor(private appdataservice: AppdataService, public dialog: MatDialog) { }
 
   @ViewChild(MatTable) table: MatTable<PolicyElement>;
   @ViewChild(MatSort) sort: MatSort;
   policiesData: PolicyElement[] = [];
   dataSource = new MatTableDataSource(this.policiesData);
-  displayedColumns: string[] = ['company', 'policy_number', 'policy_holder', 'premium_amount', 'premium_end_date'];
+  displayedColumns: string[] = ['company', 'policy_number', 'policy_holder', 'premium_amount', 'premium_end_date',
+  'insured', 'start_date', 'date_of_maturity', 'maturity_amount', 'covered_amount', 'actions'];
   policyDataError: boolean = false;
-  policyDataErrorMessage = "Could not load Policies Data !"
+  policyDataErrorMessage = "No Policies !"
 
   ngAfterViewInit(): void {
-    // this.loadDummyData();
     this.loadMyPoliciesData();
     this.dataSource.sort = this.sort;
-  }
-
-  loadDummyData() {
-    this.policiesData = [
-      {
-        company: 'Aegon', policy_number: '123', policy_holder: 'aa', insured: '',
-        start_date: new Date(), premium_end_date: new Date(), date_of_maturity: new Date,
-        maturity_amount: 300, covered_amount: 0, premium_amount: 100
-      },
-      {
-        company: 'LIC', policy_number: '456', policy_holder: 'bb', insured: 'hh',
-        start_date: new Date(), premium_end_date: new Date(), date_of_maturity: new Date,
-        maturity_amount: 400, covered_amount: 0, premium_amount: 200
-      },
-      {
-        company: 'Birla', policy_number: '789', policy_holder: 'cc', insured: '',
-        start_date: new Date(), premium_end_date: new Date(), date_of_maturity: new Date,
-        maturity_amount: 500, covered_amount: 0, premium_amount: 300
-      },
-      {
-        company: 'HDFC', policy_number: '135', policy_holder: 'dd', insured: 'ii',
-        start_date: new Date(), premium_end_date: new Date(), date_of_maturity: new Date,
-        maturity_amount: 600, covered_amount: 0, premium_amount: 400
-      },
-      {
-        company: 'ICICI', policy_number: '246', policy_holder: 'ee', insured: '',
-        start_date: new Date(), premium_end_date: new Date(), date_of_maturity: new Date,
-        maturity_amount: 700, covered_amount: 0, premium_amount: 500
-      },
-      {
-        company: 'LIC', policy_number: '357', policy_holder: 'ff', insured: 'jj',
-        start_date: new Date(), premium_end_date: new Date(), date_of_maturity: new Date,
-        maturity_amount: 800, covered_amount: 0, premium_amount: 600
-      },
-      {
-        company: 'HDFC', policy_number: '680', policy_holder: 'gg', insured: '',
-        start_date: new Date(), premium_end_date: new Date(), date_of_maturity: new Date,
-        maturity_amount: 900, covered_amount: 0, premium_amount: 700
-      },
-    ];
-    this.dataSource = new MatTableDataSource(this.policiesData);
-    this.table.renderRows();
-
   }
 
   loadMyPoliciesData() {
@@ -88,8 +49,12 @@ export class MyPoliciesComponent implements AfterViewInit {
     this.appdataservice.getMyPolicies(params).subscribe(
       (response: PolicyElement[]) => {
         this.policiesData = response;
-        this.dataSource = new MatTableDataSource(this.policiesData);
-        this.table.renderRows();
+        if (this.policiesData.length >0) {
+          this.dataSource = new MatTableDataSource(this.policiesData);
+          this.table.renderRows();
+        } else {
+          this.policyDataError = true;
+        }
       },
       (exception) => {
         this.policyDataError = true;
@@ -97,6 +62,46 @@ export class MyPoliciesComponent implements AfterViewInit {
       }
     );
 
+  }
+
+  openPaymentDialog(policy): void {
+    const dialogRef = this.dialog.open(PaymentComponent, {
+      // width: '250px',
+      data: {policy_number: policy.policy_number,
+             company: policy.company,
+             premium_amount: policy.premium_amount},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      let paymentDate = result;
+      this.addedPayment(policy, paymentDate)
+    });
+  }
+
+  addedPayment(policy, paymentDate) {
+    console.log("Added date: " + paymentDate + " for policy " + policy.policy_number)
+  }
+
+  addPolicyPopup(): void {
+    const dialogRef = this.dialog.open(AddPolicyComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      let isAdded = result;
+    });
+  }
+
+  paymentDetailsPopup(policy): void{
+    const dialogRef = this.dialog.open(PaymentDetailsComponent, {
+      data: {policy_number: policy.policy_number,
+             company: policy.company},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      let isAdded = result;
+    });
   }
 
 }

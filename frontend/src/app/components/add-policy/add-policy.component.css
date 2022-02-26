@@ -1,35 +1,39 @@
-.example-container {
+.add-policy-container {
   padding: 20px;
 }
 
-.example-container .mat-button-base {
-  margin: 0 8px;
+.add-policy-container .mat-button-base {
+  margin: 0 8px !important;
 }
 
-.example-container .mat-form-field + .mat-form-field {
+.add-policy-container .submit-button {
+  margin-left: 8px !important;
+}
+
+.add-policy-container .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
 
-.example-container .mat-form-field {
+.add-policy-container .mat-form-field {
   width: 220px;
 }
 
-.example-container .mat-form-field.large-field{
+.add-policy-container .mat-form-field.large-field{
   width: 335px;
 }
 
-.example-container form {
+.add-policy-container form {
   margin-bottom: 20px;
 }
 
-.example-container form > * {
+.add-policy-container form > * {
   margin: 5px 0;
 }
 
-.example-container .mat-radio-button {
+.add-policy-container .mat-radio-button {
   margin: 0 12px;
 }
 
-.example-container section.form-center {
+.add-policy-container section.form-center {
   text-align: center;
 }
